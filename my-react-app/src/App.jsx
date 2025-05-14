@@ -13,7 +13,7 @@ function App() {
     <>
       {/*long way -> <Header></Header>*/}
       <Header/>
-      <UserGreeting name="JCL"/>
+      {/* <UserGreeting name="JCL"/> */}
       <Card src={profilePic} title="About Me" desc="2nd year Computer Engineering Technology Student (NAIT)"/>
       <Card src={stocksPic} alt="image of stocks" title="Stock Simulator" desc="Stock simulator using a stock exchange API"/>
       <Card src={pharmPic} alt="image of medications" title="PharmaDirect" desc="Medication delivery app between pharmacy and patients"/>
