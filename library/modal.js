@@ -5,8 +5,11 @@
  */
 console.log("modal.js connected"); // diagnostics
 
-function ModalContainer(){
+function AddNewModal(){
     console.log("Modal Container"); // diagnostics
+    const newDialog = $(`<dialog></dialog>`);
+    AppendAll(newDialog, ModalHeader(), ModalBody(), ModalButtons());
+    return newDialog;
 }
 function ModalHeader(){
     console.log("Modal Header"); // diagnostics

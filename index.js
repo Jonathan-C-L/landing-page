@@ -14,8 +14,8 @@ $(document).ready(()=>{
 
 function RenderModal(){
     console.log("Render Modal"); // diagnostics
-    AppendAll(body, ModalHeader(), ModalBody(), ModalButtons());
-    ModalEvents();
+    AppendAll(body, AddNewModal()); // adding new modal to the landing-page
+    ModalEvents(); // event handler for the modal
 }
 function RenderMainPage(){
     console.log("Render Main Page"); // diagnostics
