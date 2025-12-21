@@ -9,10 +9,16 @@ console.log("common.js connected"); // diagnostics
 /**
  * AppendAll appends all jQuery childnodes to a parent node
  * @param {*} parent the parent jQuery node to be appended to
- * @param  {...any} childNodes the child jQuery nodes to append
+ * @param {any} childNodes the child jQuery nodes to append
  */
 function AppendAll(parent, ...childNodes){
     childNodes.forEach(child => {
         $(parent).append(child);
     });
+}
+function NewElement(element, id = null){
+    const newElement = $(`<${element}>`);
+    if(id != null)
+        newElement.attr("id", id);
+    return newElement;
 }

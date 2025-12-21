@@ -4,4 +4,23 @@
     margin: 0;
     box-sizing: border-box;
     text-align: center;
+    align-self: center;
+}
+/* using this selector will ensure display:grid only applies when dialog is open */
+dialog[open]{
+    margin: auto;
+    margin-bottom: 50vh;
+    padding: 12px 48px;
+    width: 60%;
+    height: 40%;
+    border-radius: 2rem;
+    display: grid;
+    grid-template-rows: 0.7fr 4fr 0.7fr;
+}
+dialog::backdrop{
+    background-color: rgba(35, 35, 35, 0.4);
+}
+dialog>p{
+    align-self: start;
+    text-align: left;
 }

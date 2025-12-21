@@ -5,21 +5,51 @@
  */
 console.log("modal.js connected"); // diagnostics
 
-function AddNewModal(){
-    console.log("Modal Container"); // diagnostics
-    const newDialog = $(`<dialog></dialog>`);
-    AppendAll(newDialog, ModalHeader(), ModalBody(), ModalButtons());
+function OnloadModal(){
+    // initial dialog container 
+    const newDialog = $(`<dialog class='modal'></dialog>`);
+    newDialog.attr("id", "welcome");
+
+    let data = {};
+    const header = ModalHeader("Welcome");
+    const text = ModalBodyText("Hello");
+    const buttons = ModalButtons({"close": "Close"});
+
+    // diagnostics
+    data["header"] = header;
+    data["text"] = text;
+    data["buttons"] = buttons;
+    console.log(data);
+
+    AppendAll(newDialog, header, text, buttons);
     return newDialog;
 }
-function ModalHeader(){
-    console.log("Modal Header"); // diagnostics
+
+// modal modular components
+function ModalHeader(title){
+    return $(`<h3>${title}</h3>`);
 }
-function ModalBody(){
-    console.log("Modal Body"); // diagnostics
+function ModalBodyInputs(bodyElements){
+    const modalBodyContainer = $(`<div>`);
+    Object.keys(bodyElements).forEach(label => {
+        const newInputDiv = $(`<div>`); // new container for inputs
+        const newLabel = $(`<label for='${label}'>${label}</label>`); // label
+        const newInput = $(`<input name='${label}' type='${bodyElements[label]}'>`); // input
+        AppendAll(newInputDiv, newLabel, newInput); // append everything to the input container
+        modalBodyContainer.append(newInputDiv); // append to parent container to be returned
+    });
+    return modalBodyContainer;
 }
-function ModalButtons(){
-    console.log("Modal Buttons"); // diagnostics
+function ModalBodyText(text){
+    return $(`<p>${text}</p>`);
 }
-function ModalEvents(){
-    console.log("Modal Events"); // diagnostics
+function ModalButtons(buttons){
+    const newButtonDiv = $(`<div>`);
+    Object.keys(buttons).forEach(button =>{
+        const newButton = NewElement("button", button);
+        newButton.text(buttons[button]);
+        newButtonDiv.append(newButton);
+    });
+    return newButtonDiv;
 }
+

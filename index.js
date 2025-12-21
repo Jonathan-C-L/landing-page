@@ -4,20 +4,38 @@
  * Date: Dec. 18, 2025
  */
 console.log("index.js connected");
-const body = $("body");
+// global access variables
+let main = null;
+let header = null;
+let footer = null;
 
 // render elements onload
 $(document).ready(()=>{
-    RenderModal();
+    main = $("main");
+    header = $("header");
+    footer = $("footer");
+    RenderWelcome();
     RenderMainPage();
 });
 
-function RenderModal(){
-    console.log("Render Modal"); // diagnostics
-    AppendAll(body, AddNewModal()); // adding new modal to the landing-page
-    ModalEvents(); // event handler for the modal
+function RenderWelcome(){
+    AppendAll(main, OnloadModal()); // adding new modal to the landing-page
+    WelcomeModalEvents(); // event handler for the modal
 }
 function RenderMainPage(){
     console.log("Render Main Page"); // diagnostics
+
+}
+function WelcomeModalEvents(){
+    const welcomeDialog = document.querySelector("#welcome");
+
+    welcomeDialog.showModal();
+    console.log("Modal Events"); // diagnostics
+    $("#close").click((e)=>{
+        welcomeDialog.close();
+    });
+}
+function MainPageEvents(){
+    console.log("Main Page Events"); // diagnostics
 
 }
