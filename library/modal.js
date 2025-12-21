@@ -5,29 +5,18 @@
  */
 console.log("modal.js connected"); // diagnostics
 
-function OnloadModal(){
+function MessageModal(title = "", message = "", buttons = {}){
     // initial dialog container 
     const newDialog = $(`<dialog class='modal'></dialog>`);
     newDialog.attr("id", "welcome");
 
-    let data = {};
-    const header = ModalHeader("Welcome");
-    const text = ModalBodyText("Hello");
-    const buttons = ModalButtons({"close": "Close"});
-
-    // diagnostics
-    data["header"] = header;
-    data["text"] = text;
-    data["buttons"] = buttons;
-    console.log(data);
-
-    AppendAll(newDialog, header, text, buttons);
+    AppendAll(newDialog, ModalHeader(title), ModalBodyText(message), ModalButtons(buttons));
     return newDialog;
 }
 
 // modal modular components
 function ModalHeader(title){
-    return $(`<h3>${title}</h3>`);
+    return $(`<h2>${title}</h2>`);
 }
 function ModalBodyInputs(bodyElements){
     const modalBodyContainer = $(`<div>`);

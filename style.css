@@ -5,14 +5,14 @@
     box-sizing: border-box;
     text-align: center;
     align-self: center;
+    line-height: 1.5;
 }
 /* using this selector will ensure display:grid only applies when dialog is open */
 dialog[open]{
     margin: auto;
-    margin-bottom: 50vh;
+    margin-bottom: 40vh;
     padding: 12px 48px;
     width: 60%;
-    height: 40%;
     border-radius: 2rem;
     display: grid;
     grid-template-rows: 0.7fr 4fr 0.7fr;
@@ -22,5 +22,10 @@ dialog::backdrop{
 }
 dialog>p{
     align-self: start;
-    text-align: left;
+    text-align: justify;
+    font-size: larger;
+    margin: 12px 0;
+}
+dialog button{
+    padding: 6px 42px;
 }
