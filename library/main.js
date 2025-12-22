@@ -14,3 +14,6 @@ function NewProjectCard(title = null, description = null, link = null, img = nul
     const newCard = $(`<div class='card'></div>`);
     return newCard;
 }
+
+
+
