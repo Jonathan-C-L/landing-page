@@ -1,37 +1,48 @@
 /**
- * Summary: modal.js contains all of the js files that are related to the dom creations and manipulations of the modal dialog of the landing-page
+ * Summary: modal.js contains all of the js functions that are related to the dom creations and manipulations of the modal dialog of the landing-page
  * Author: Jonathan Le
  * Date: Dec. 18, 2025
  */
 console.log("modal.js connected"); // diagnostics
 
-function MessageModal(title = "", message = "", buttons = {}){
+/**
+ * MessageModal creates a modal dialog with a text message
+ * @param {string} title string parameter for the title of the dialog
+ * @param {string} message string parameter for the message to be included in the dialog
+ * @param {object} buttons key-value pair to specify the id and text of the button
+ * @returns a dialog element with the title, message, and button(s) embedded within it
+ */
+function MessageModal(title, message, buttons = {}){
     // initial dialog container 
     const newDialog = $(`<dialog class='modal'></dialog>`);
     newDialog.attr("id", "welcome");
 
-    AppendAll(newDialog, ModalHeader(title), ModalBodyText(message), ModalButtons(buttons));
+    AppendAll(newDialog, AddHeader(title), AddParagraph(message), ModalButtons(buttons));
     return newDialog;
 }
 
-// modal modular components
-function ModalHeader(title){
-    return $(`<h2>${title}</h2>`);
-}
-function ModalBodyInputs(bodyElements){
+/*********************************************** modular components *******************************************/
+/**
+ * ModalBodyInputs allows for specification of the label (key) and the input type (value)
+ * @param {object} input key-value pairs for the label and input type
+ * @returns a div with the label+inputs within them
+ */
+function ModalBodyInputs(input){
     const modalBodyContainer = $(`<div>`);
-    Object.keys(bodyElements).forEach(label => {
+    Object.keys(input).forEach(label => {
         const newInputDiv = $(`<div>`); // new container for inputs
         const newLabel = $(`<label for='${label}'>${label}</label>`); // label
-        const newInput = $(`<input name='${label}' type='${bodyElements[label]}'>`); // input
+        const newInput = $(`<input name='${label}' type='${input[label]}'>`); // input
         AppendAll(newInputDiv, newLabel, newInput); // append everything to the input container
         modalBodyContainer.append(newInputDiv); // append to parent container to be returned
     });
     return modalBodyContainer;
 }
-function ModalBodyText(text){
-    return $(`<p>${text}</p>`);
-}
+/**
+ * ModalButtons allows for button creation with an id (key) and text (value)
+ * @param {object} buttons key-value pair for the button id and button text
+ * @returns a div with the button(s) within them
+ */
 function ModalButtons(buttons){
     const newButtonDiv = $(`<div>`);
     Object.keys(buttons).forEach(button =>{

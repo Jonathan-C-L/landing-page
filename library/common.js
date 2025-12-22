@@ -16,9 +16,31 @@ function AppendAll(parent, ...childNodes){
         $(parent).append(child);
     });
 }
+/**
+ * NewElement creates a new element of the specified type and id (if provided)
+ * @param {string} element 
+ * @param {string} id 
+ * @returns 
+ */
 function NewElement(element, id = null){
     const newElement = $(`<${element}>`);
     if(id != null)
         newElement.attr("id", id);
     return newElement;
+}
+/**
+ * AddHeader places the argument string into a header element
+ * @param {string} title string to be inserted into the h2 tag
+ * @returns h2 element with the argument text within
+ */
+function AddHeader(title){
+    return $(`<h2>${title}</h2>`);
+}
+/**
+ * AddParagraph places the argument text into a paragraph element
+ * @param {string} text string to be inserted into the paragraph
+ * @returns paragraph element with the text inside
+ */
+function AddParagraph(text){
+    return $(`<p>${text}</p>`);
 }

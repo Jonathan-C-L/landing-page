@@ -6,6 +6,14 @@
     text-align: center;
     align-self: center;
     line-height: 1.5;
+    --headerHeight: 0.5fr;
+    --bodyHeight: 4fr;
+    --footerHeight: 0.35fr;
+}
+body{
+    height: 100vh;
+    display: grid;
+    grid-template-rows: var(--headerHeight) var(--bodyHeight) var(--footerHeight);
 }
 /* using this selector will ensure display:grid only applies when dialog is open */
 dialog[open]{
@@ -15,7 +23,7 @@ dialog[open]{
     width: 60%;
     border-radius: 2rem;
     display: grid;
-    grid-template-rows: 0.7fr 4fr 0.7fr;
+    grid-template-rows: var(--headerHeight) var(--bodyHeight) var(--footerHeight);
 }
 dialog::backdrop{
     background-color: rgba(35, 35, 35, 0.4);
@@ -28,4 +36,15 @@ dialog>p{
 }
 dialog button{
     padding: 6px 42px;
+}
+main{
+    height: 100%;
+}
+header{
+    background-color: darkgray;
+    height: 100%;
+    align-content: center;
+}
+#content{
+    height: 100%;
 }

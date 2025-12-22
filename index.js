@@ -15,10 +15,10 @@ $(document).ready(()=>{
     main = $("main");
     header = $("header");
     footer = $("footer");
-    RenderWelcome();
-    RenderMainPage();
+    // RenderWelcome(); // remember to uncomment this
+    RenderHeader();
+    RenderMain();
 });
-
 function RenderWelcome(){
     const welcomeMessage = `I'm currently a Computer Engineering Technology (CNT) student at NAIT
                             and will be officially graduating in April 2026.
@@ -26,7 +26,7 @@ function RenderWelcome(){
                             from my educational journey, with proficiencies in embedded and
                             web development. I love going low-level and understanding computers in the
                             most fundamentals ways, because that's where all the interesting bits are
-                            happening.<br>
+                            happening.<br><br>
                             <u>Current languages</u>: HTML/CSS/Javascript, C, PHP, C#, python<br>
                             <u>Databases</u>: mySQL and SQL Server<br>
                             <u>Frameworks</u>: jQuery, ASP.NET (ADO and Entity)<br>
@@ -39,17 +39,20 @@ function WelcomeModalEvents(){
     const welcomeDialog = document.querySelector("#welcome");
 
     welcomeDialog.showModal(); // display modal onload
-    console.log("Modal Events"); // diagnostics
     $("#close").click(()=>{
         welcomeDialog.close();
     });
 }
-function RenderMainPage(){
-    console.log("Render Main Page"); // diagnostics
-    
+function RenderMain(){
+    console.log("Render Main"); // diagnostics
+    const mainPage = $("<div id='content'></div>"); 
+    AppendAll(main, mainPage);
 }
 
-function MainPageEvents(){
-    console.log("Main Page Events"); // diagnostics
-
+function MainEvents(){
+    console.log("Main Events"); // diagnostics
+}
+function RenderHeader(){
+    console.log("Render Header"); // diagnostics
+    header.text("Hello");
 }
