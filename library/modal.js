@@ -5,38 +5,40 @@
  */
 console.log("modal.js connected"); // diagnostics
 
-class Modal{
-    constructor(title = null, id, message = null, inputs = null, buttons = null){
-        this.dialog = $(`<dialog class='modal' id='${id}'></dialog>`);
-        if(title != null)
-            this.SetTitle(title);
-        if(message != null)
-            this.SetMessage(message);
-        if(inputs != null)
-            this.SetInputs(inputs);
-        if(buttons != null)
+/*********************************************** modal creation with Modal class *******************************************/
+class MessageModal extends Display{
+    constructor(title = null, id = null, message = null, buttons = null){
+        super("dialog", title, id, message); // constructor of the parent
+        this.display.addClass("modal"); // adding modal class for easy consistent styling
+    
+        if(buttons != null){
             this.SetButtons(buttons);
+        }
     }
     /**
-     * SetTitle places the argument string into a header element
-     * @param {string} title string to be inserted into the h2 tag
-     * @returns h2 element with the argument text within
-     */
-    SetTitle(title){
-        this.dialog.append($(`<h2>${title}</h2>`));
-    }
-    /**
-    * SetMessage places the argument text into a paragraph element
-    * @param {string} text string to be inserted into the paragraph
-    * @returns paragraph element with the text inside
+    * SetButtons allows for button creation with an id (key) and text (value)
+    * @param {object} buttons key-value pair for the button id and button text
     */
-    SetMessage(text){
-        this.dialog.append($(`<p>${text}</p>`));
+    SetButtons(buttons){
+        const newButtonDiv = $(`<div>`);
+        Object.keys(buttons).forEach(button =>{
+            const newButton = NewElement("button", button);
+            newButton.text(buttons[button]);
+            newButtonDiv.append(newButton);
+        });
+        this.display.append(newButtonDiv);
+    }
+}
+class InputModal extends MessageModal{
+    constructor(title = null, id = null, message = null, buttons = null, inputs = null){
+        super(title, id, message, buttons);
+        if(inputs != null){
+            this.SetInputs(inputs);
+        } 
     }
     /**
     * SetInputs allows for specification of the label (key) and the input type (value)
     * @param {object} inputs key-value pairs for the label and input type
-    * @returns a div with the label+inputs within them
     */
     SetInputs(inputs){
         const modalBodyContainer = $(`<div>`);
@@ -47,24 +49,10 @@ class Modal{
             AppendAll(newInputDiv, newLabel, newInput); // append everything to the input container
             modalBodyContainer.append(newInputDiv); // append to parent container to be returned
         });
-        this.dialog.append(modalBodyContainer);
-    }
-    /**
-    * SetButtons allows for button creation with an id (key) and text (value)
-    * @param {object} buttons key-value pair for the button id and button text
-    * @returns a div with the button(s) within them
-    */
-    SetButtons(buttons){
-        const newButtonDiv = $(`<div>`);
-        Object.keys(buttons).forEach(button =>{
-            const newButton = NewElement("button", button);
-            newButton.text(buttons[button]);
-            newButtonDiv.append(newButton);
-        });
-        this.dialog.append(newButtonDiv);
+        this.display.append(modalBodyContainer);
     }
 }
-
+/*********************************************** modal creation with functions *******************************************/
 /**
  * MessageModal creates a modal dialog with a text message
  * @param {string} title string parameter for the title of the dialog
@@ -72,7 +60,7 @@ class Modal{
  * @param {object} buttons key-value pair to specify the id and text of the button
  * @returns a dialog element with the title, message, and button(s) embedded within it
  */
-function MessageModal(title, message, buttons = {}){
+function MessageModalFunction(title, message, buttons = {}){
     // initial dialog container 
     const newDialog = $(`<dialog class='modal'></dialog>`);
     newDialog.attr("id", "welcome");
@@ -81,7 +69,6 @@ function MessageModal(title, message, buttons = {}){
     return newDialog;
 }
 
-/*********************************************** modular components *******************************************/
 /**
  * ModalBodyInputs allows for specification of the label (key) and the input type (value)
  * @param {object} input key-value pairs for the label and input type

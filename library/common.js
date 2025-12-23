@@ -44,3 +44,35 @@ function AddHeader(title){
 function AddParagraph(text){
     return $(`<p>${text}</p>`);
 }
+// parent or superclass for all display elements for this page
+class Display{
+    constructor(element = "div", title = null, id = null, text = null){
+        this.display = $(`<${element}>`);
+        if(id != null){
+            this.id = id;
+            this.display.attr("id", id);
+        }
+        if(title != null){
+            this.title = title;
+            this.SetTitle(title);
+        }
+        if(text != null){
+            this.text = text;
+            this.SetText(text);
+        }
+    }
+    /**
+     * SetTitle places the argument string into a header element
+     * @param {string} title string to be inserted into the h2 tag
+     */
+    SetTitle(title){
+        this.display.append($(`<h2>${title}</h2>`));
+    }
+    /**
+    * SetMessage places the argument text into a paragraph element
+    * @param {string} text string to be inserted into the paragraph
+    */
+    SetText(text){
+        this.display.append($(`<p>${text}</p>`));
+    }
+}

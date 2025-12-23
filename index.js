@@ -32,9 +32,8 @@ function RenderWelcome(){
                             <u>Frameworks</u>: jQuery, ASP.NET (ADO and Entity)<br>
                             <u>Technologies</u>: Git, Github, VSCode, Azure (limited)<br>`;
     // adding the welcome modal dialog to the page
-    // AppendAll(main, MessageModal("Welcome to my projects landing page", welcomeMessage, {"close": "Close"})); // adding new modal to the landing-page
-    const welcomeModal = new Modal("Welcome to my projects landing page", "welcome", welcomeMessage, null, {"close": "Close"});
-    AppendAll(main, welcomeModal.dialog);
+    const welcomeModal = new MessageModal("Welcome to my projects landing page", "welcome", welcomeMessage, {"close": "Close"});
+    AppendAll(main, welcomeModal.display);
     WelcomeModalEvents(); // event handler for the modal
 }
 function WelcomeModalEvents(){
