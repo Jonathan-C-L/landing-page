@@ -33,6 +33,7 @@ function RenderWelcome(){
                             <u>Technologies</u>: Git, Github, VSCode, Azure (limited)<br>`;
     // adding the welcome modal dialog to the page
     const welcomeModal = new MessageModal("Welcome to my projects landing page", "welcome", welcomeMessage, {"close": "Close"});
+    welcomeModal.Assemble();
     AppendAll(main, welcomeModal.display);
     WelcomeModalEvents(); // event handler for the modal
 }

@@ -12,44 +12,55 @@ class MessageModal extends Display{
         this.display.addClass("modal"); // adding modal class for easy consistent styling
     
         if(buttons != null){
-            this.SetButtons(buttons);
+            this.buttons = this.AddButtons(buttons);
         }
     }
     /**
     * SetButtons allows for button creation with an id (key) and text (value)
     * @param {object} buttons key-value pair for the button id and button text
     */
-    SetButtons(buttons){
+    AddButtons(buttons){
         const newButtonDiv = $(`<div>`);
         Object.keys(buttons).forEach(button =>{
             const newButton = NewElement("button", button);
             newButton.text(buttons[button]);
             newButtonDiv.append(newButton);
         });
-        this.display.append(newButtonDiv);
+        return newButtonDiv;
     }
 }
 class InputModal extends MessageModal{
-    constructor(title = null, id = null, message = null, buttons = null, inputs = null){
+    constructor(title = null, id = null, message = null, inputs = null, buttons = null){
         super(title, id, message, buttons);
         if(inputs != null){
-            this.SetInputs(inputs);
+            this.inputs = this.SetInputs(inputs);
         } 
+    }
+    Assemble(){
+        // append the text and inputs first
+        Object.keys(this).forEach(item => {
+            console.log(item);
+            if(item == "buttons")
+                return;
+            this.display.append(this[item]);
+        });
+        // then append the buttons at the very end
+        this.display.append(this["buttons"]);
     }
     /**
     * SetInputs allows for specification of the label (key) and the input type (value)
     * @param {object} inputs key-value pairs for the label and input type
     */
     SetInputs(inputs){
-        const modalBodyContainer = $(`<div>`);
+        const inputContainer = $(`<div>`);
         Object.keys(inputs).forEach(label => {
             const newInputDiv = $(`<div>`); // new container for inputs
-            const newLabel = $(`<label for='${label}'>${label}</label>`); // label
+            const newLabel = $(`<label for='${label}'>${label}: </label>`); // label
             const newInput = $(`<input name='${label}' type='${inputs[label]}'>`); // input
             AppendAll(newInputDiv, newLabel, newInput); // append everything to the input container
-            modalBodyContainer.append(newInputDiv); // append to parent container to be returned
+            inputContainer.append(newInputDiv); // append to parent container to be returned
         });
-        this.display.append(modalBodyContainer);
+        return inputContainer;
     }
 }
 /*********************************************** modal creation with functions *******************************************/
