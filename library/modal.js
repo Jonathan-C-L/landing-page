@@ -33,9 +33,12 @@ class InputModal extends MessageModal{
     constructor(title = null, id = null, message = null, inputs = null, buttons = null){
         super(title, id, message, buttons);
         if(inputs != null){
-            this.inputs = this.SetInputs(inputs);
+            this.inputs = this.AddInputs(inputs);
         } 
     }
+    /**
+     * Assemble will append the html elements in the necessary order for display
+     */
     Assemble(){
         // append the text and inputs first
         Object.keys(this).forEach(item => {
@@ -48,10 +51,10 @@ class InputModal extends MessageModal{
         this.display.append(this["buttons"]);
     }
     /**
-    * SetInputs allows for specification of the label (key) and the input type (value)
+    * AddInputs allows for specification of the label (key) and the input type (value)
     * @param {object} inputs key-value pairs for the label and input type
     */
-    SetInputs(inputs){
+    AddInputs(inputs){
         const inputContainer = $(`<div>`);
         Object.keys(inputs).forEach(label => {
             const newInputDiv = $(`<div>`); // new container for inputs

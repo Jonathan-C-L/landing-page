@@ -45,6 +45,9 @@ header{
     height: 100%;
     align-content: center;
 }
-#content{
-    height: 100%;
+.card{
+    width: 300px;
+}
+.card>img{
+    width: 100%;
 }

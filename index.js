@@ -15,7 +15,7 @@ $(document).ready(()=>{
     main = $("main");
     header = $("header");
     footer = $("footer");
-    RenderWelcome(); // remember to uncomment this
+    // RenderWelcome(); // remember to uncomment this
     RenderHeader();
     RenderMain();
 });
@@ -45,10 +45,14 @@ function WelcomeModalEvents(){
         welcomeDialog.close();
     });
 }
+// thinking of having a database store project information, then have an ajax call to pull that information and display it here
 function RenderMain(){
     console.log("Render Main"); // diagnostics
-    const mainPage = $("<div id='content'></div>"); 
-    AppendAll(main, mainPage);
+    const description = `A To-Do list that uses the localstorage api to store items to be completed. 
+                         The items can be filtered by time-frames (i.e. today, week, month, and all).`;
+    const project = new ProjectCard("To-Do List", "to-do", description, "./assets/to-do-list.jpg", "to-do list screenshot");
+    project.Assemble();
+    AppendAll(main, project.display);
 }
 
 function MainEvents(){

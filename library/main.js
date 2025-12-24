@@ -6,23 +6,21 @@
 console.log("main.js connected");
 
 class ProjectCard extends Display{
-    constructor(title = null, id = null, description = null, img = null, alt = "image"){
+    constructor(title = null, id = null, description = null, src = null, alt = "image"){
         super("div", title, id, description);
         this.display.addClass("card"); // adding card class for easy consistent styling
 
-        if(img != null){
-            this.src = img;
-            this.alt = alt;
-            this.SetImage(img, alt);
+        if(src != null){
+            this.image = this.AddImage(src, alt);            
         }    
     }
     /**
-     * SetImage places the argument path for the image, along with it's description, within the display
+     * AddImage places the argument path for the image, along with it's description, within the display
      * @param {string} src string that represents the file path for the image
      * @param {string} alt string that describes the image being displayed
      */
-    SetImage(src, alt){
-        this.display.append($(`<img src='${src}' alt='${alt}'>`));
+    AddImage(src, alt){
+        return $(`<img src='${src}' alt='${alt}'>`);
     }
 }
 
