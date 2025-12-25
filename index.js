@@ -15,7 +15,7 @@ $(document).ready(()=>{
     main = $("main");
     header = $("header");
     footer = $("footer");
-    RenderWelcome(); // remember to uncomment this
+    // RenderWelcome(); // remember to uncomment this
     RenderHeader();
     RenderMain();
 });
@@ -50,19 +50,25 @@ function RenderMain(){
     console.log("Render Main"); // diagnostics
     const mainHeader = $(`<h1>Projects</h1>`); // header for the main page - can change this to make it more flexible
 
+    // TEST FOR THE DISPLAY
     const description = `A To-Do list that uses the localstorage api to store items to be completed. 
                          The items can be filtered by time-frames (i.e. today, week, month, and all).`;
     const project1 = new ProjectCard("To-Do List", "to-do", description, "./assets/to-do-list.jpg", "to-do list screenshot");
     project1.Assemble();
-    const project2 = new ProjectCard("BLAH", "blah", "blah blah blah blah blah blah blah", "./assets/to-do-list.jpg", "to-do list screenshot");
+    const project2 = new ProjectCard("BLAH", "blah2", "blah blah blah blah blah blah blah", "./assets/to-do-list.jpg", "to-do list screenshot");
     project2.Assemble();
-    const project3 = new ProjectCard("BLAH", "blah", "blah blah blah blah blah blah blah", "./assets/to-do-list.jpg", "to-do list screenshot");
+    const project3 = new ProjectCard("BLAH", "blah3", "blah blah blah blah blah blah blah", "./assets/to-do-list.jpg", "to-do list screenshot");
     project3.Assemble();
-    AppendAll(main, [mainHeader, project1.display, project2.display, project3.display]);
-}
 
+    AppendAll(main, [mainHeader, project1.display, project2.display, project3.display]);
+    MainEvents();
+}
 function MainEvents(){
     console.log("Main Events"); // diagnostics
+    main.click((e)=>{
+        if(e.target.className == "card")
+            console.log(e.target.id);
+    });
 }
 function RenderHeader(){
     console.log("Render Header"); // diagnostics
