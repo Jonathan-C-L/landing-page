@@ -20,7 +20,7 @@ class ProjectCard extends Display{
      * @param {string} alt string that describes the image being displayed
      */
     AddImage(src, alt){
-        return $(`<img src='${src}' alt='${alt}'>`);
+        return $(`<div class='card-image'><img src='${src}' alt='${alt}'></div>`);
     }
 }
 

@@ -10,11 +10,25 @@
     --bodyHeight: 4fr;
     --footerHeight: 0.35fr;
 }
+/* general styling */
+header{
+    background-color: darkgray;
+    height: 100%;
+    align-content: center;
+}
 body{
     height: 100vh;
     display: grid;
     grid-template-rows: var(--headerHeight) var(--bodyHeight) var(--footerHeight);
 }
+main{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* dialog styling */
 /* using this selector will ensure display:grid only applies when dialog is open */
 dialog[open]{
     margin: auto;
@@ -37,17 +51,39 @@ dialog>p{
 dialog button{
     padding: 6px 42px;
 }
-main{
-    height: 100%;
-}
-header{
-    background-color: darkgray;
-    height: 100%;
-    align-content: center;
-}
+
+/* card styling */
 .card{
-    width: 300px;
+    width: 90vw;
+    min-height: 35vh;
+    border: 1px solid black;
+    padding: 24px 48px;
+    display: grid;
+    grid-template-areas: 
+        "image title"
+        "image description";
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 4fr;
+    column-gap: 12px;
 }
-.card>img{
+.card>h2{
+    grid-area: title;
+}
+.card>p{
+    grid-area: description;
+    align-self: normal;
+}
+.card-image{
+    grid-area: image;
+    background-color: black;
     width: 100%;
+    border: 1px solid black;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    
+}
+.card-image>img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
