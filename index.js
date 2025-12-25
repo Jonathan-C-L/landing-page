@@ -15,7 +15,7 @@ $(document).ready(()=>{
     main = $("main");
     header = $("header");
     footer = $("footer");
-    // RenderWelcome(); // remember to uncomment this
+    RenderWelcome(); // remember to uncomment this
     RenderHeader();
     RenderMain();
 });
@@ -34,7 +34,7 @@ function RenderWelcome(){
     // adding the welcome modal dialog to the page
     const welcomeModal = new MessageModal("Welcome to my projects landing page", "welcome", welcomeMessage, {"close": "Close"});
     welcomeModal.Assemble();
-    AppendAll(main, welcomeModal.display);
+    AppendAll(main, [welcomeModal.display]);
     WelcomeModalEvents(); // event handler for the modal
 }
 function WelcomeModalEvents(){
@@ -48,13 +48,17 @@ function WelcomeModalEvents(){
 // thinking of having a database store project information, then have an ajax call to pull that information and display it here
 function RenderMain(){
     console.log("Render Main"); // diagnostics
-    const mainHeader = $(`<h1>Projects</h1>`);
+    const mainHeader = $(`<h1>Projects</h1>`); // header for the main page - can change this to make it more flexible
 
     const description = `A To-Do list that uses the localstorage api to store items to be completed. 
                          The items can be filtered by time-frames (i.e. today, week, month, and all).`;
-    const project = new ProjectCard("To-Do List", "to-do", description, "./assets/to-do-list.jpg", "to-do list screenshot");
-    project.Assemble();
-    AppendAll(main, mainHeader, project.display);
+    const project1 = new ProjectCard("To-Do List", "to-do", description, "./assets/to-do-list.jpg", "to-do list screenshot");
+    project1.Assemble();
+    const project2 = new ProjectCard("BLAH", "blah", "blah blah blah blah blah blah blah", "./assets/to-do-list.jpg", "to-do list screenshot");
+    project2.Assemble();
+    const project3 = new ProjectCard("BLAH", "blah", "blah blah blah blah blah blah blah", "./assets/to-do-list.jpg", "to-do list screenshot");
+    project3.Assemble();
+    AppendAll(main, [mainHeader, project1.display, project2.display, project3.display]);
 }
 
 function MainEvents(){

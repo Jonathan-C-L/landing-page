@@ -11,7 +11,12 @@ console.log("common.js connected"); // diagnostics
  * @param {*} parent the parent jQuery node to be appended to
  * @param {any} childNodes the child jQuery nodes to append
  */
-function AppendAll(parent, ...childNodes){
+function AppendAll(parent, childNodes){
+    // exception handling for non-array argument
+    if(!Array.isArray(childNodes)){
+        console.error("childNodes argument is not an array");
+        return;
+    }
     childNodes.forEach(child => {
         $(parent).append(child);
     });

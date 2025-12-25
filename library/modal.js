@@ -60,7 +60,7 @@ class InputModal extends MessageModal{
             const newInputDiv = $(`<div>`); // new container for inputs
             const newLabel = $(`<label for='${label}'>${label}: </label>`); // label
             const newInput = $(`<input name='${label}' type='${inputs[label]}'>`); // input
-            AppendAll(newInputDiv, newLabel, newInput); // append everything to the input container
+            AppendAll(newInputDiv, [newLabel, newInput]); // append everything to the input container
             inputContainer.append(newInputDiv); // append to parent container to be returned
         });
         return inputContainer;
@@ -79,7 +79,7 @@ function MessageModalFunction(title, message, buttons = {}){
     const newDialog = $(`<dialog class='modal'></dialog>`);
     newDialog.attr("id", "welcome");
 
-    AppendAll(newDialog, AddHeader(title), AddParagraph(message), ModalButtons(buttons));
+    AppendAll(newDialog, [AddHeader(title), AddParagraph(message), ModalButtons(buttons)]);
     return newDialog;
 }
 
