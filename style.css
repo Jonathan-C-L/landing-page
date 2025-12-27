@@ -7,17 +7,36 @@
     align-self: center;
     line-height: 1.5;
     /* variables - change header, body, and footer sizes here */
-    --headerHeight: 10vh;
+    --headerHeight: 8vh;
     --bodyHeight: 4fr;
     --footerHeight: 5vh;
     --displayGap: 24px;
 }
-/* general styling */
+/* header styling */
 header{
     background-color: darkgray;
     height: 100%;
     align-content: center;
+    font-weight: bold;
+    padding: 0 24px;
 }
+#header{
+    width: 100%;
+    font-size: xx-large;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+#options{
+    width: 25%;
+    font-size: x-large;
+}
+/* achor tag styling */
+a{
+    text-decoration: none;
+}
+/* body layout styling */
 body{
     height: 100vh;
     display: grid;
@@ -29,7 +48,7 @@ main{
     flex-direction: column;
     gap: var(--displayGap);
 }
-main>h1{
+main>h1, footer{
     margin-top: var(--displayGap);
 }
 /* dialog styling */

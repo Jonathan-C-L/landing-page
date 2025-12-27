@@ -55,7 +55,7 @@ function RenderMain(){
                          The items can be filtered by time-frames (i.e. today, week, month, and all).`;
     const project1 = new ProjectCard("To-Do List", "to-do", description, "./assets/to-do-list.jpg", "to-do list screenshot");
     project1.Assemble();
-    const project2 = new ProjectCard("BLAH", "blah2", "blah blah blah blah blah blah blah", "./assets/to-do-list.jpg", "to-do list screenshot");
+    const project2 = new ProjectCard("Othello", "othello", "Using PHP to perform server-side game logic in the board game 'Othello'.", "./assets/othello.jpg", "othello gameboard screenshot");
     project2.Assemble();
     const project3 = new ProjectCard("BLAH", "blah3", "blah blah blah blah blah blah blah", "./assets/to-do-list.jpg", "to-do list screenshot");
     project3.Assemble();
@@ -72,5 +72,6 @@ function MainEvents(){
 }
 function RenderHeader(){
     console.log("Render Header"); // diagnostics
-    header.text("Hello");
+
+    header.append(NewHeader("Jonathan", {"Home": "", "About Me": "", "Projects": ""}));
 }
