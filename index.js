@@ -73,5 +73,5 @@ function MainEvents(){
 function RenderHeader(){
     console.log("Render Header"); // diagnostics
 
-    header.append(NewHeader("Jonathan", {"Home": "", "About Me": "", "Projects": ""}));
+    header.append(NewHeader("Jonathan", {"Home": "", "About": "", "Projects": ""}));
 }

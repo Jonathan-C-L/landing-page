@@ -24,11 +24,6 @@ class ProjectCard extends Display{
     }
 }
 
-/*********************************************** modular components *******************************************/
-function NewProjectCard(title = null, description = null, link = null, img = null){
-    const newCard = $(`<div class='card'></div>`);
-    return newCard;
-}
 
 
 
