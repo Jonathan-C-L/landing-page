@@ -8,7 +8,8 @@ function NewHeader(logo, links){
 
     // assigning titles and hrefs
     Object.keys(links).forEach(title =>{
-        const tempLink = $(`<a id='${title.toLowerCase().replaceAll(" ", "_")}' href='${links[title]}'>${title}</a>`);
+        // href='${links[title]}' for when links are ever incorporated
+        const tempLink = $(`<a id='${title.toLowerCase().replaceAll(" ", "_")}'>${title}</a>`);
         headerOptions.append(tempLink);
     });
 
