@@ -14,6 +14,7 @@ class MessageModal extends Display{
         if(buttons != null){
             this.buttons = this.AddButtons(buttons);
         }
+        this.Assemble(); // assemble when first created
     }
     /**
     * SetButtons allows for button creation with an id (key) and text (value)
@@ -35,6 +36,7 @@ class InputModal extends MessageModal{
         if(inputs != null){
             this.inputs = this.AddInputs(inputs);
         } 
+        this.Assemble(); // assemble when first created
     }
     /**
      * Assemble will append the html elements in the necessary order for display

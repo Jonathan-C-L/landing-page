@@ -1,5 +1,27 @@
 console.log("header.js connected");
 
+
+function RenderHeader(){
+    console.log("Render Header"); // diagnostics
+
+    header.append(NewHeader("Jonathan", {"About": "", "Projects": "", "Contact": ""}));
+    HeaderEvents();
+}
+function HeaderEvents(){
+    header.click(e=>{
+        console.log(e.target.id);
+        switch(e.target.id){
+            case "about":
+                RenderAboutMe(ProjectsData());
+                break;
+            case "projects":
+                RenderProjects(AboutMeData());
+                break;
+            case "contact":
+                break;
+        }
+    });
+}
 function NewHeader(logo, links){
     // parent divs for flex styling
     const header = $(`<div class='container' id='header'></div>`);

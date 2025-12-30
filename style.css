@@ -4,10 +4,11 @@
     --headerHeight: 6vh;
     --bodyHeight: 4fr;
     --footerHeight: 5vh;
-    --displayGap: 24px;
+    --displayGap: 12px;
     --primaryColor: #3C3C3B;
     --secondaryColor: #00FF00;
     --tertiaryColor: #3e6a3d;
+    --headerColor: #FFFFFF;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -59,9 +60,10 @@ main{
     display: flex;
     flex-direction: column;
     gap: var(--displayGap);
+    margin-bottom: var(--displayGap);
 }
-main>h1, footer{
-    margin-top: calc(var(--displayGap) / 2);
+main>div:first-child{
+    margin-top: var(--displayGap);
 }
 /* dialog styling */
 /* using this selector will ensure display:grid only applies when dialog is open */

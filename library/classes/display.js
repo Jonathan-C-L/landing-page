@@ -11,6 +11,7 @@ class Display{
         if(text != null){
             this.text = this.AddText(text);
         }
+        this.Assemble(); // assemble when first created
     }
     /**
      * Assemble will append the html elements in the necessary order for display
