@@ -27,22 +27,21 @@ class ProjectCard extends Display{
 }
 /*********************************************** DOM Functions *******************************************/
 function RenderAboutMe(responseData){
-    console.log(responseData);
     main.html(""); // reset main
     const about = new Display("div", responseData["title"], responseData["id"], responseData["desc"]);
     main.append(about.display);
 }
 // thinking of having a database store project information, then have an ajax call to pull that information and display it here
 function RenderProjects(responseData){
-    console.log(responseData);
     main.html(""); // reset main
     console.log("Projects"); // diagnostics
     const mainHeader = new Display("div", "Projects", "projects-page", null); // header for the main page - can change this to make it more flexible
     main.append(mainHeader);
 
     responseData.forEach(project => {
+        console.log(project);
         const newProject = new ProjectCard(project["title"], project["id"], project["desc"], project["src"], project["alt"]);
-        main.append(newProject);
+        main.append(newProject.display);
     });
 
     ProjectsEvents();
@@ -52,7 +51,6 @@ function RenderContact(){
 }
 /*********************************************** Event Handlers *******************************************/
 function ProjectsEvents(){
-    console.log("Main Events"); // diagnostics
     main.click((e)=>{
         if(e.target.className == "card")
             console.log(e.target.id);

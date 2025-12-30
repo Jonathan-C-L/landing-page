@@ -5,14 +5,14 @@
  */
 console.log("modal.js connected"); // diagnostics
 
-/*********************************************** modal creation with Modal class *******************************************/
+/*********************************************** Modal Creation With Modal class *******************************************/
 class MessageModal extends Display{
     constructor(title = null, id = null, message = null, buttons = null){
         super("dialog", title, id, message); // constructor of the parent
         this.display.addClass("modal"); // adding modal class for easy consistent styling
     
         if(buttons != null){
-            this.buttons = this.AddButtons(buttons);
+            this.buttons = this.SetButtons(buttons);
         }
         this.Assemble(); // assemble when first created
     }
@@ -20,7 +20,7 @@ class MessageModal extends Display{
     * SetButtons allows for button creation with an id (key) and text (value)
     * @param {object} buttons key-value pair for the button id and button text
     */
-    AddButtons(buttons){
+    SetButtons(buttons){
         const newButtonDiv = $(`<div>`);
         Object.keys(buttons).forEach(button =>{
             const newButton = NewElement("button", button);
@@ -34,7 +34,7 @@ class InputModal extends MessageModal{
     constructor(title = null, id = null, message = null, inputs = null, buttons = null){
         super(title, id, message, buttons);
         if(inputs != null){
-            this.inputs = this.AddInputs(inputs);
+            this.inputs = this.SetInputs(inputs);
         } 
         this.Assemble(); // assemble when first created
     }
@@ -53,10 +53,10 @@ class InputModal extends MessageModal{
         this.display.append(this["buttons"]);
     }
     /**
-    * AddInputs allows for specification of the label (key) and the input type (value)
+    * SetInputs allows for specification of the label (key) and the input type (value)
     * @param {object} inputs key-value pairs for the label and input type
     */
-    AddInputs(inputs){
+    SetInputs(inputs){
         const inputContainer = $(`<div>`);
         Object.keys(inputs).forEach(label => {
             const newInputDiv = $(`<div>`); // new container for inputs
@@ -68,7 +68,7 @@ class InputModal extends MessageModal{
         return inputContainer;
     }
 }
-/*********************************************** modal creation with functions *******************************************/
+/*********************************************** Modal Creation With Functions *******************************************/
 /**
  * MessageModal creates a modal dialog with a text message
  * @param {string} title string parameter for the title of the dialog

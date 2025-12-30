@@ -6,10 +6,10 @@ class Display{
             this.display.attr("id", id);
         }
         if(title != null){
-            this.title = this.AddTitle(title);
+            this.title = this.SetTitle(title);
         }
         if(text != null){
-            this.text = this.AddText(text);
+            this.text = this.SetText(text);
         }
         this.Assemble(); // assemble when first created
     }
@@ -22,25 +22,19 @@ class Display{
         });
     }
     /**
-     * AddTitle will return the argument string as a jQuery header object
+     * SetTitle will return the argument string as a jQuery header object
      * @param {string} title string for the title to be displayed
      * @returns h2 jQuery object with the argument string embedded within
      */
-    AddTitle(title){
+    SetTitle(title){
         return $(`<h2>${title}</h2>`);
     }
     /**
-    * SetMessage places the argument text into a paragraph element
-    * @param {string} text string to be inserted into the paragraph
-    */
-
-
-    /**
-     * AddText returns the argument string as a jQuery paragraph object
+     * SetText returns the argument string as a jQuery paragraph object
      * @param {string} text string for the text to be displayed
      * @returns p jQuery object with the argument string embedded within
      */
-    AddText(text){
+    SetText(text){
         return $(`<p>${text}</p>`);
     }
 }

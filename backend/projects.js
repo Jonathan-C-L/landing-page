@@ -6,6 +6,7 @@ function ProjectsData(){
     
     returnData.push(ToDoList(), Othello(), Demonstrations());
 
+    console.log(returnData);
     return returnData;
 }
 /*********************************************** Data Objects *******************************************/
