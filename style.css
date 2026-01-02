@@ -5,10 +5,10 @@
     --bodyHeight: 4fr;
     --footerHeight: 5vh;
     --displayGap: 12px;
-    --primaryColor: #3C3C3B;
-    --secondaryColor: #00FF00;
-    --tertiaryColor: #3e6a3d;
-    --headerColor: #FFFFFF;
+    --backgroundColor: rgb(25, 25, 30);
+    --textColor: #00FF00;
+    --secondaryTextColor: #3e6a3d;
+    --mainTextColor: rgba(255, 255, 255, 0.75);
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -17,6 +17,7 @@
     line-height: 1.5;
     font-family: "Chakra Petch", sans-serif;
 }
+/* CRT screen effect  */
 :root {
   --crt-red: rgb(218, 49, 49);
   --crt-green: rgb(112, 159, 115);
@@ -39,7 +40,7 @@
   }
 }
 .crt {
-  background-color: rgb(25, 25, 30);
+  background-color: var(--backgroundColor);
   text-shadow: 0 0 0.2em currentColor, 1px 1px rgba(255, 0, 255, 0.5),
     -1px -1px rgba(0, 255, 255, 0.4);
   position: relative;
@@ -78,26 +79,19 @@
   display: inline-block;
   animation: blinkTextCursor 500ms infinite normal;
 }
-html {
+html{
   font-size: 1.5rem;
-  font-family: "Courier New", monospace;
   min-height: 100%;
 }
-main {
-  height: 100vh;
-  height: 100dvh;
-  color: rgba(255, 255, 255, 0.75);
-}
 /* header styling */
-header{
+#header{
     height: 100%;
     align-content: center;
     font-weight: bold;
-}
-#header{
     width: 100%;
+    min-width: 600px;
     font-size: xx-large;
-    border-bottom: 2px solid var(--secondaryColor);
+    border-bottom: 2px solid var(--textColor);
 }
 .container{
     display: flex;
@@ -110,13 +104,13 @@ header{
 /* achor tag styling */
 a{
     text-decoration: none;
-    color: var(--secondaryColor);
+    color: unset;
 }
 a:hover{
     text-decoration: underline;
 }
 a:active{
-    color: var(--tertiaryColor); 
+    color: var(--secondaryTextColor); 
 }
 /* body layout styling */
 body{
@@ -124,10 +118,13 @@ body{
     display: grid;
     grid-template-rows: var(--headerHeight) var(--bodyHeight) var(--footerHeight);
     padding: 0 20vw;
-    color: var(--secondaryColor);
-    background-color: var(--primaryColor);
+    color: var(--textColor);
+    background-color: var(--backgroundColor);
 }
 main{
+    height: 100vh;
+    height: 100dvh;
+    color: var(--mainTextColor);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -146,8 +143,8 @@ dialog[open]{
     width: 60%;
     display: grid;
     grid-template-rows: var(--headerHeight) var(--bodyHeight) var(--footerHeight);
-    color: var(--secondaryColor);
-    background-color: var(--primaryColor);
+    color: var(--textColor);
+    background-color: var(--backgroundColor);
 }
 dialog::backdrop{
     background-color: rgba(0, 0, 0, 0.8);
@@ -159,24 +156,24 @@ dialog>p{
 }
 dialog button{
     padding: 6px 42px;
-    color: var(--secondaryColor);
-    background-color: var(--primaryColor);
-    border: 1px solid var(--secondaryColor);
+    color: var(--textColor);
+    background-color: var(--backgroundColor);
+    border: 1px solid var(--textColor);
 }
 dialog button:hover{
-    box-shadow: 0 0 25px var(--tertiaryColor);
+    box-shadow: 0 0 25px var(--secondaryTextColor);
 }
 dialog button:active{
-    box-shadow: 0 0 25px var(--secondaryColor);
+    box-shadow: 0 0 25px var(--textColor);
 }
-dialog button:focus{
+dialog button:focus, dialog:focus{
     outline: none;
 }
 /* card styling */
 .card{
     width: 100%;
     min-height: 35vh;
-    border: 2px solid var(--secondaryColor);
+    border: 2px solid var(--textColor);
     padding: 24px 48px;
     display: grid;
     grid-template-areas: 
@@ -213,10 +210,10 @@ dialog button:focus{
     object-fit: contain;
 }
 .card:hover{
-    box-shadow: 0 0 25px var(--tertiaryColor);
+    box-shadow: 0 0 25px var(--secondaryTextColor);
 }
 .card:active{
-    box-shadow: 0 0 25px var(--secondaryColor);
+    box-shadow: 0 0 25px var(--textColor);
 }
 /* about me styling */
 #about-me > :first-child{
@@ -230,4 +227,8 @@ dialog button:focus{
     right: 0;
     margin: auto;
     max-width: 400px;
+}
+/* credits styling */
+.credits{
+    font-size: small;
 }

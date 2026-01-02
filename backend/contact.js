@@ -11,8 +11,7 @@ function ContactData(){
     contactInfo += `<br><u>Email</u>: <a id='jonathanlemain@gmail.com'>jonathanlemain@gmail.com</a>`;
     contactInfo += `<br><u>Github</u>: <a target='_blank' href='https://github.com/Jonathan-C-L'>https://github.com/Jonathan-C-L</a>`;
 
-
-    const contactId = `contact`;
+    const contactId = `contact-me`;
     const contactTitle = `Contact`;
     
     return {

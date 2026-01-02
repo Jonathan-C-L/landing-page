@@ -18,8 +18,8 @@ $(document).ready(()=>{
     header = $("header");
     footer = $("footer");
     RenderHeader();
-    RenderContact(ContactData());
-    // RenderAboutMe(AboutMeData());
+    RenderFooter();
+    RenderAboutMe(AboutMeData());
     // RenderWelcome(); // remember to uncomment this
 });
 // function RenderWelcome(){

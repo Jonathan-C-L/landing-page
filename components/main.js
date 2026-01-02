@@ -31,11 +31,10 @@ function RenderAboutMe(responseData){
     const about = new Display("div", responseData["title"], responseData["id"], responseData["desc"]);
     main.append(about.display);
 }
-// thinking of having a database store project information, then have an ajax call to pull that information and display it here
 function RenderProjects(responseData){
     main.html(""); // reset main
     const mainHeader = new Display("div", "Projects", "projects-page", null); // header for the main page - can change this to make it more flexible
-    main.append(mainHeader);
+    main.append(mainHeader.display);
 
     responseData.forEach(project => {
         const newProject = new ProjectCard(project["title"], project["id"], project["desc"], project["src"], project["alt"]);
@@ -48,34 +47,40 @@ function RenderContact(responseData){
     main.html(""); // reset main
     const contact = new Display("div", responseData["title"], responseData["id"], responseData["desc"]);
     main.append(contact.display);
+
     ContactEvents();
 }
 /*********************************************** Event Handlers *******************************************/
 function ProjectsEvents(){
+    const successDialog = new MessageModal(null, "copy-success", "Successfully added to Clipboard", null);
+    const errorDialog = new MessageModal(null, "copy-error", "Error adding to Clipboard", null);
+    AppendAll(main, [successDialog.display, errorDialog.display]);
+
     main.click((e)=>{
-        if(e.target.className == "card")
-            console.log(e.target.id);
+        if(e.target.className != "card")
+            return;
+        console.log(e.target.id);
     });
 }
 function ContactEvents(){
-    main
-    const dialog = new MessageModal(null, "copy-success", "Successfully added to Clipboard", null);
-    main.append(dialog.display);
+    const contactContainer = $(`#contact-me`);
+    const successDialog = new MessageModal(null, "copy-success", "Successfully added to Clipboard", null);
+    const errorDialog = new MessageModal(null, "copy-error", "Error adding to Clipboard", null);
+    AppendAll(main, [successDialog.display, errorDialog.display]);
 
-    main.click((e) => {
-        console.log(e.target.id);
-        // only register events that have an id
-        if(e.target.id == undefined || e.target.id == null || e.target.id == "")
-            return;
-        navigator.clipboard.writeText(e.target.id).then(()=>{
-            const successDialog = document.querySelector("#copy-success");
-            successDialog.show();
-        }, CopyError);
-    })
-}
-function CopySuccess(message){
-    console.log(`Success!`);
-}
-function CopyError(message){
-    console.log(`Fail`);
+    contactContainer.click((e) => {
+        navigator.clipboard.writeText(e.target.id).then(
+        // clipboard sucess
+            ()=>{ 
+            const dialog = document.querySelector("#copy-success");
+            dialog.show();
+            setTimeout(()=>{dialog.close();}, 1650);
+        }, 
+        // clipboard error
+        ()=>{ 
+            const dialog = document.querySelector("#copy-error");
+            dialog.show();
+            setTimeout(()=>{dialog.close();}, 1650);
+        });
+    });
 }

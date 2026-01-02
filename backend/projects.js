@@ -8,6 +8,9 @@ function ProjectsData(){
 
     return returnData;
 }
+function ProjectCardData(project){
+
+}
 /*********************************************** Data Objects *******************************************/
 function ToDoList(){
     const title =   `To-Do List`;
