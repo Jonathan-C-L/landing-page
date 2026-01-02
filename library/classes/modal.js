@@ -44,7 +44,6 @@ class InputModal extends MessageModal{
     Assemble(){
         // append the text and inputs first
         Object.keys(this).forEach(item => {
-            console.log(item);
             if(item == "buttons")
                 return;
             this.display.append(this[item]);

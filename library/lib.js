@@ -1,5 +1,5 @@
 /**
- * Summary: common.js is a library file that contains javascript that will be commonly used between all other js files to keep 
+ * Summary: lib.js is a library file that contains javascript that will be commonly used between all other js files to keep 
  * the files organized and to minimize the size of each js file
  * Author: Jonathan Le
  * Date: Dec. 18, 2025

@@ -7,7 +7,6 @@ function RenderHeader(){
 }
 function HeaderEvents(){
     header.click(e=>{
-        console.log(e.target.id);
         switch(e.target.id){
             case "about":
                 RenderAboutMe(AboutMeData());
@@ -16,6 +15,7 @@ function HeaderEvents(){
                 RenderProjects(ProjectsData());
                 break;
             case "contact":
+                RenderContact(ContactData());
                 break;
         }
     });
@@ -24,7 +24,7 @@ function HeaderEvents(){
 function NewHeader(logo, links){
     // parent divs for flex styling
     const header = $(`<div class='container' id='header'></div>`);
-    const headerLogo = $(`<div id='logo'>${logo}</div>`);
+    const headerLogo = $(`<div id='logo'>${logo}<span class='cursor'>_</span></div>`);
     const headerOptions = $(`<div class='container' id='options'></div>`);
 
     // assigning titles and hrefs

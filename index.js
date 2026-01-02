@@ -8,15 +8,18 @@ console.log("index.js connected");
 let main = null;
 let header = null;
 let footer = null;
+let body = null;
 
 // render elements onload
 $(document).ready(()=>{
     // assigning global to get global access to these html elements
+    body = $("body");
     main = $("main");
     header = $("header");
     footer = $("footer");
     RenderHeader();
-    RenderAboutMe(AboutMeData());
+    RenderContact(ContactData());
+    // RenderAboutMe(AboutMeData());
     // RenderWelcome(); // remember to uncomment this
 });
 // function RenderWelcome(){

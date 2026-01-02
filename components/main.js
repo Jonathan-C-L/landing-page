@@ -34,20 +34,21 @@ function RenderAboutMe(responseData){
 // thinking of having a database store project information, then have an ajax call to pull that information and display it here
 function RenderProjects(responseData){
     main.html(""); // reset main
-    console.log("Projects"); // diagnostics
     const mainHeader = new Display("div", "Projects", "projects-page", null); // header for the main page - can change this to make it more flexible
     main.append(mainHeader);
 
     responseData.forEach(project => {
-        console.log(project);
         const newProject = new ProjectCard(project["title"], project["id"], project["desc"], project["src"], project["alt"]);
         main.append(newProject.display);
     });
 
     ProjectsEvents();
 }
-function RenderContact(){
-
+function RenderContact(responseData){
+    main.html(""); // reset main
+    const contact = new Display("div", responseData["title"], responseData["id"], responseData["desc"]);
+    main.append(contact.display);
+    ContactEvents();
 }
 /*********************************************** Event Handlers *******************************************/
 function ProjectsEvents(){
@@ -57,5 +58,24 @@ function ProjectsEvents(){
     });
 }
 function ContactEvents(){
+    main
+    const dialog = new MessageModal(null, "copy-success", "Successfully added to Clipboard", null);
+    main.append(dialog.display);
 
+    main.click((e) => {
+        console.log(e.target.id);
+        // only register events that have an id
+        if(e.target.id == undefined || e.target.id == null || e.target.id == "")
+            return;
+        navigator.clipboard.writeText(e.target.id).then(()=>{
+            const successDialog = document.querySelector("#copy-success");
+            successDialog.show();
+        }, CopyError);
+    })
+}
+function CopySuccess(message){
+    console.log(`Success!`);
+}
+function CopyError(message){
+    console.log(`Fail`);
 }
