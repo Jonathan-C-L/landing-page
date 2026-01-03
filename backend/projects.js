@@ -8,6 +8,7 @@ function ProjectsData(){
 
     return returnData;
 }
+// this is for the modal pop up for each project that is clicked
 function ProjectCardData(project){
 
 }
@@ -15,8 +16,10 @@ function ProjectCardData(project){
 function ToDoList(){
     const title =   `To-Do List`;
     const id =      `to-do`;
-    const desc =    `A To-Do list that uses the localstorage api to store items to be completed. 
-                     The items can be filtered by time-frames (i.e. today, week, month, and all).`;
+    let desc =      `A To-Do list that uses the localStorage API to store items to be completed. 
+                     The items can be filtered by time-frames (i.e. today, week, month, and all).<br>`;
+    desc +=         `<br><i>Learned: Node.js, scripting, localStorage API, modular design, webpack for dependencies</i><br>`;
+    desc +=         `<br>Repo: <a target='_blank' href='https://github.com/Jonathan-C-L/to-do-list'>https://github.com/Jonathan-C-L/to-do-list</a>`;
     const src =     `./assets/to-do-list.jpg`;
     const alt =     `to-do list screenshot`;
 
@@ -25,7 +28,9 @@ function ToDoList(){
 function Othello(){
     const title =   `Othello`;
     const id =      `othello`;
-    const desc =    `Using PHP to perform server-side game logic in the board game "Othello".`;
+    let desc =      `Using PHP to perform server-side game logic processing for the board game "Othello".<br>`;
+    desc +=         `<br><i>Learned: PHP, data cleaning, server-side validation, client-server communication</i><br>`;
+    desc +=         `<br>Repo: <a target='_blank' href='https://github.com/Jonathan-C-L/othello'>https://github.com/Jonathan-C-L/othello</a>`;
     const src =     `./assets/othello.jpg`;
     const alt =     `othello gameboard screenshot`;
     
@@ -34,8 +39,10 @@ function Othello(){
 function Demonstrations(){
     const title =   `Demonstrations`;
     const id =      `demos`;
-    const desc =    `These demonstrations are my previous programming projects from school. 
-                     I have included things here that display my programming style and generally to document my progression as a programmer.`;
+    let desc =      `These demonstrations are my previous programming projects from school. 
+                     I have included things here that display my programming style and generally to document my progression as a programmer.<br>`;
+    desc +=         `<br><i>Learned: Object Oriented Programming, REST APIs, Full-Stack web dev, .NET Framework, Embedded Systems programming, memory management, data structures, sorting algorithms</i><br>`;
+    desc +=         `<br>Repo: <a target='_blank' href='https://github.com/Jonathan-C-L/demonstrations'>https://github.com/Jonathan-C-L/demonstrations</a>`;
     const src =     `./assets/demos.jpg`;
     const alt =     `billards screenshot`;
     
@@ -48,6 +55,6 @@ function AddProject(projTitle, projId, projDesc, projSrc, projAlt){
         id: projId,
         desc: projDesc,
         src: projSrc,
-        alt: projAlt
+        alt: projAlt,
     };
 }

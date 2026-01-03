@@ -185,7 +185,7 @@ dialog button:focus, dialog:focus{
 }
 .card>*{
     /* allows clicks anywhere on the card */
-    pointer-events: none;
+    /* pointer-events: none; */
 }
 .card>h2{
     grid-area: title;
@@ -209,12 +209,13 @@ dialog button:focus, dialog:focus{
     height: 100%;
     object-fit: contain;
 }
-.card:hover{
+/* will implement a click handler */
+/* .card:hover{
     box-shadow: 0 0 25px var(--secondaryTextColor);
 }
 .card:active{
     box-shadow: 0 0 25px var(--textColor);
-}
+} */
 /* about me styling */
 #about-me > :first-child{
     margin-bottom: calc(var(--displayGap) / 2);
