@@ -8,7 +8,7 @@ console.log("about.js connected");
 function AboutMeData(){
     const aboutDescription = `I'm currently a Computer Engineering Technology (CNT) student at NAIT
                              and will be officially graduating in April 2026.
-                             As a brief summary, I have roughly 3 years of experience programming
+                             As a brief summary, I have approximately 3 years of experience programming
                              from my educational journey, with proficiencies in embedded and
                              web development. I love going low-level and understanding computers in the
                              most fundamentals ways, because that's where all the interesting bits are
