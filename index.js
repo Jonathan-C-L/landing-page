@@ -20,8 +20,12 @@ $(document).ready(()=>{
     RenderHeader();
     RenderFooter();
     RenderAboutMe(AboutMeData());
+    CallAjax("https://api.github.com/users/Jonathan-C-L/repos", "get", {}, "json", Test, AjaxError);
     // RenderWelcome(); // remember to uncomment this
 });
+function Test(response){
+    console.log(response);
+}
 // function RenderWelcome(){
 //     const welcomeMessage = `My name is Jonathan and welcome to my projects page!<br>
 //                             Here you'll find some of the things that will display my programming abilities.
