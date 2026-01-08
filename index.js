@@ -25,7 +25,15 @@ $(document).ready(()=>{
 });
 function Test(response){
     console.log(response);
+    response.forEach(project => {
+        if(project["fork"] == true) // if forked, currently it's not my project
+            return;
+        // console.log(CapitalizeFirst(project["name"]));
+        console.log(project["description"]);
+
+    });
 }
+
 // function RenderWelcome(){
 //     const welcomeMessage = `My name is Jonathan and welcome to my projects page!<br>
 //                             Here you'll find some of the things that will display my programming abilities.

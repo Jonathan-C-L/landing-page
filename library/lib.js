@@ -49,3 +49,19 @@ function AddHeader(title){
 function AddParagraph(text){
     return $(`<p>${text}</p>`);
 }
+/**
+ * CapitalizeFirst will capitalizes the first letter of a word - NOT FUNCTIONAL ATM
+ * @param {string} word string argument to have it's first letter capitalized
+ * @returns the word with the first letter capitalized
+ */
+function CapitalizeFirst(title){
+    if(title.length === 0)
+        return "";
+    let titleWords = null;
+    if(title.includes("-"))
+        titleWords = title.split("-");
+    else if (title.includes(" "))
+        titleWords = title.split(" ");
+    
+    return newTitle;
+}
