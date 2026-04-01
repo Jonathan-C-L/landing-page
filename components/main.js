@@ -5,82 +5,90 @@
  */
 console.log("main.js connected");
 
-/*********************************************** Classes *******************************************/
-class ProjectCard extends Display{
-    constructor(title = null, id = null, description = null, src = null, alt = "image"){
-        super("div", title, id, description);
-        this.display.addClass("card"); // adding card class for easy consistent styling
+function renderAbout(){
+  const data = AboutMeData();
 
-        if(src != null){
-            this.image = this.AddImage(src, alt);            
-        }    
-        this.Assemble(); // assemble when first created
+  // Text
+  document.getElementById("about-text-content").textContent = data.desc;
+
+  // Skills
+  const container = document.getElementById("skills-block");
+  container.innerHTML = "";
+  Object.keys(data.skills).forEach(category => {
+    const row = document.createElement("div");
+    row.className = "skill-row";
+    row.innerHTML = `<div class="skill-row-label">${category}</div><div class="skill-pills">${
+      data.skills[category].map(s => `<span class="pill">${s}</span>`).join("")
+    }</div>`;
+    container.appendChild(row);
+  });
+}
+
+function renderProjects(){
+  const grid = document.getElementById("projects-grid");
+  grid.innerHTML = "";
+  ProjectsData().forEach(project => {
+    const card = document.createElement("a");
+    card.className = "project-card";
+    card.href = project.repo;
+    card.target = "_blank";
+    card.id = project.id;
+
+    // image placeholder gradient (since assets aren't accessible in preview)
+    const gradients = {
+      "to-do":  "linear-gradient(135deg, #1c2a4a 0%, #0f3d2e 100%)",
+      "othello":"linear-gradient(135deg, #3a2010 0%, #1a1030 100%)",
+      "demos":  "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)"
+    };
+
+    card.innerHTML = `
+      <div class="card-image" style="background: ${gradients[project.id] || '#1c1c28'}">
+        <img src="${project.localSrc}" alt="${project.title} screenshot"
+             onerror="this.style.display='none'">
+      </div>
+      <div class="card-body">
+        <div class="card-title">${project.title}</div>
+        <div class="card-desc">
+          ${project.desc}<br><br>
+          <i>Learned: ${project.learned}</i>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a class="card-link" href="${project.repo}" target="_blank">View Repo</a>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderContact(){
+  const card = document.getElementById("contact-card");
+  card.innerHTML = "";
+  ContactData().forEach(item => {
+    const row = document.createElement("div");
+    row.className = "contact-row";
+
+    if(item.href){
+      row.innerHTML = `
+        <div class="contact-icon">${item.icon}</div>
+        <div>
+          <div class="contact-label">${item.label}</div>
+          <a class="contact-value" href="${item.href}" target="${item.href.startsWith('http') ? '_blank' : '_self'}">${item.value}</a>
+        </div>
+        <span class="copy-hint">click to copy</span>
+      `;
+    } else {
+      row.innerHTML = `
+        <div class="contact-icon">${item.icon}</div>
+        <div>
+          <div class="contact-label">${item.label}</div>
+          <span class="contact-value">${item.value}</span>
+        </div>
+        <span class="copy-hint">click to copy</span>
+      `;
     }
-    /**
-     * AddImage places the argument path for the image, along with it's description, within the display
-     * @param {string} src string that represents the file path for the image
-     * @param {string} alt string that describes the image being displayed
-     */
-    AddImage(src, alt){
-        return $(`<div class='card-image'><img src='${src}' alt='${alt}'></div>`);
-    }
-}
-/*********************************************** DOM Functions *******************************************/
-function RenderAboutMe(responseData){
-    main.html(""); // reset main
-    const about = new Display("div", responseData["title"], responseData["id"], responseData["desc"]);
-    main.append(about.display);
-}
-function RenderProjects(responseData){
-    main.html(""); // reset main
-    const mainHeader = new Display("div", "Projects", "projects-page", null); // header for the main page - can change this to make it more flexible
-    main.append(mainHeader.display);
 
-    responseData.forEach(project => {
-        const newProject = new ProjectCard(project["title"], project["id"], project["desc"], project["src"], project["alt"]);
-        main.append(newProject.display);
-    });
-
-    ProjectsEvents();
-}
-function RenderContact(responseData){
-    main.html(""); // reset main
-    const contact = new Display("div", responseData["title"], responseData["id"], responseData["desc"]);
-    main.append(contact.display);
-
-    ContactEvents();
-}
-/*********************************************** Event Handlers *******************************************/
-function ProjectsEvents(){
-    const successDialog = new MessageModal(null, "copy-success", "Successfully added to Clipboard", null);
-    const errorDialog = new MessageModal(null, "copy-error", "Error adding to Clipboard", null);
-    AppendAll(main, [successDialog.display, errorDialog.display]);
-
-    main.click((e)=>{
-        if(e.target.className != "card")
-            return;
-        console.log(e.target.id);
-    });
-}
-function ContactEvents(){
-    const contactContainer = $(`#contact-me`);
-    const successDialog = new MessageModal(null, "copy-success", "Successfully added to Clipboard", null);
-    const errorDialog = new MessageModal(null, "copy-error", "Error adding to Clipboard", null);
-    AppendAll(main, [successDialog.display, errorDialog.display]);
-
-    contactContainer.click((e) => {
-        navigator.clipboard.writeText(e.target.id).then(
-        // clipboard sucess
-            ()=>{ 
-            const dialog = document.querySelector("#copy-success");
-            dialog.show();
-            setTimeout(()=>{dialog.close();}, 1650);
-        }, 
-        // clipboard error
-        ()=>{ 
-            const dialog = document.querySelector("#copy-error");
-            dialog.show();
-            setTimeout(()=>{dialog.close();}, 1650);
-        });
-    });
+    row.addEventListener("click", () => copyToClipboard(item.value));
+    card.appendChild(row);
+  });
 }

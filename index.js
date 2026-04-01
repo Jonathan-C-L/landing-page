@@ -12,46 +12,32 @@ let body = null;
 
 // render elements onload
 $(document).ready(()=>{
-    // assigning global to get global access to these html elements
-    body = $("body");
-    main = $("main");
-    header = $("header");
-    footer = $("footer");
-    RenderHeader();
-    RenderFooter();
-    RenderAboutMe(AboutMeData());
-    CallAjax("https://api.github.com/users/Jonathan-C-L/repos", "get", {}, "json", Test, AjaxError);
-    // RenderWelcome(); // remember to uncomment this
+    // CallAjax("https://api.github.com/users/Jonathan-C-L/repos", "get", {}, "json", Test, AjaxError);
+    const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("visible"); });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+    
+    renderAbout();
+    renderProjects();
+    renderContact();
+
+    // observe newly added fade-in elements
+    document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
 });
-function Test(response){
-    console.log(response);
-    response.forEach(project => {
-        if(project["fork"] == true) // if forked, currently it's not my project
-            return;
-        // console.log(CapitalizeFirst(project["name"]));
-        console.log(project["description"]);
 
-    });
-}
+// function Test(response){
+//     console.log(response);
+//     response.forEach(project => {
+//         if(project["fork"] == true) // if forked, currently it's not my project
+//             return;
+//         // console.log(CapitalizeFirst(project["name"]));
+//         console.log(project["description"]);
 
-// function RenderWelcome(){
-//     const welcomeMessage = `My name is Jonathan and welcome to my projects page!<br>
-//                             Here you'll find some of the things that will display my programming abilities.
-//                             I have stuff from my education to side projects completed on my own time.<br>`;
-//     // adding the welcome modal dialog to the page
-//     const welcomeModal = new MessageModal("Hello :^)", "welcome", welcomeMessage, {"close": "Close"});
-//     welcomeModal.Assemble();
-//     AppendAll(main, [welcomeModal.display]);
-//     WelcomeModalEvents(); // event handler for the modal
-// }
-// function WelcomeModalEvents(){
-//     const welcomeDialog = document.querySelector("#welcome");
-
-//     welcomeDialog.showModal(); // display modal onload
-//     $("#close").click(()=>{
-//         welcomeDialog.close();
 //     });
 // }
+
 
 
 
